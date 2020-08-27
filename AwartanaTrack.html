@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Track Iterations - आवर्तन मोजणी</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <script>
+        var rows=0;
+  var num_iterations = 0;
+  var log="<table border='1'><tr><th>sr</th><th>members</th><th>cumulative score</th></tr>";
+  
+  function incrementIteration() {
+        rows+=1;
+        num_iterations += document.getElementById('member_count').value * 1;
+        log += "<tr><td>" + rows + "</td><td>" + document.getElementById('member_count').value + "</td><td>" + num_iterations + "</td></tr>";
+        document.getElementById('logarea').innerHTML = log + "</table>";
+        return num_iterations;
+        
+}
+  </script>
+</head>
+<body>
+  
+<div class="container-fluid">
+  <h1>आवर्तन मोजणी</h1>
+  <p>
+  <table border="1">
+        <tr><td> <h3>Member count</h3></td><td><h3>Current score</h3></td></tr>
+        <tr><td>  <input id="member_count" type="text" name="mem_cnt" value="10"></td><td><div id="result"></p></td></tr>
+  </table>
+    </p>
+  <p>
+ <button type="button" class="btn btn-success" onclick="document.getElementById('result').innerHTML=incrementIteration();">Add ITeration</button>
+  </p>
+  <p id="logarea" style="max-height: 100px"></p>           
+</div>
+
+</body>
+</html>
+
