@@ -1,45 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Track Iterations - आवर्तन मोजणी</title>
+  <title>आवर्तन मोजदाद-IterationsTracker</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="./assist.js"></script>
+-->
+  <style>
+    .btn-rounded {
+      border-radius: 45%;
+    }
+
+    .footer {
+      position: relative;
+      left: 0px;
+      bottom: 0px;
+      width: 100%;
+      background-color: teal;
+      color: white;
+      vertical-align: text-bottom;
+      text-align: center;
+    }
+  </style>
+
   <script>
-        var rows=0;
-  var num_iterations = 0;
-  var log="<table border='1'><tr><th>sr</th><th>members</th><th>cumulative score</th></tr>";
-  
-  function incrementIteration() {
-        rows+=1;
-        num_iterations += document.getElementById('member_count').value * 1;
-        log += "<tr><td>" + rows + "</td><td>" + document.getElementById('member_count').value + "</td><td>" + num_iterations + "</td></tr>";
-        document.getElementById('logarea').innerHTML = log + "</table>";
-        return num_iterations;
-        
-}
+    var logarray = [
+      ["0", "0"],
+    ];
+
+    function incrementIteration() {
+      var current_memcount = parseInt(document.getElementById('member_count').value);
+      if (current_memcount < 1 || isNaN(current_memcount)) {
+        return false;
+      }
+      document.getElementById('member_count').value = current_memcount;
+      var lastrow = logarray.length - 1;
+      var last_memcount = parseInt(logarray[lastrow][0]);
+      var last_iterations = parseInt(logarray[lastrow][1]);
+      if (current_memcount == last_memcount) {
+        logarray[lastrow][0] = current_memcount;
+        logarray[lastrow][1] = parseInt(logarray[lastrow][1]) + 1;
+      } else {
+        logarray.push([current_memcount, 1]);
+      }
+      showResult();
+      return true;
+    }
+
+    function reduceMember() {
+      var cur_val = document.getElementById('member_count').value - 1;
+      if (cur_val < 1) {
+        cur_val = 1;
+      }
+      document.getElementById('member_count').value = cur_val;
+      return true;
+    }
+
+    function addMember() {
+      var cur_val = parseInt(document.getElementById('member_count').value) + 1;
+      document.getElementById('member_count').value = cur_val;
+      return true;
+    }
+
+    function removeRow(r) {
+      var rmd = logarray.splice(r, 1);
+      showResult();
+      return true;
+    }
+
+    function enableDelete() {
+      return showResult('Y');
+    }
+
+    function disableDelete() {
+      return showResult();
+    }
+
+    function showResult(delflag) {
+      var num_iterations = 0;
+      var log =
+        "<h5 style='color: #ffffff;'>Log</h5><table class='table table-striped'><tr><th>sr</th><th>members</th><th>times</th><th>result</th>";
+      if (delflag == 'Y') {
+        log += "<th>delete</th></tr>";
+      }
+      if (logarray.length > 1) {
+        for (i = 1; i < logarray.length; i++) {
+          log += "<tr><td>" + i + "</td><td>" + logarray[i][0] + "</td><td>" + logarray[i][1] + "</td><td>" + (parseInt(
+            logarray[i][0]) * parseInt(logarray[i][1])) + "</td>";
+          if (delflag == 'Y') {
+            log += "<td><a href='#' title='Delete' onclick='removeRow(" + i +
+              ");' style='color: red;'><i class='fa fa-trash'></i></a></td></tr>";
+          } else {
+            log += "</tr>";
+          }
+          num_iterations += (parseInt(logarray[i][0]) * parseInt(logarray[i][1]));
+        }
+        log += "</table>";
+        if (delflag != 'Y') {
+          log += "<small><a href='#' onclick='enableDelete();' style='color: red;'>Enable Deletion</a></small>";
+        } else {
+          log += "<small><a href='#' onclick='disableDelete();' style='color: green;'>Disable Deletion</a></small>";
+        }
+      } else {
+        log = "";
+      }
+      document.getElementById('logarea').innerHTML = log;
+      document.getElementById('result').innerHTML = num_iterations;
+      return true;
+    }
   </script>
 </head>
+
 <body>
-  
-<div class="container-fluid">
-  <h1>आवर्तन मोजणी</h1>
-  <p>
-  <table border="1">
-        <tr><td> <h3>Member count</h3></td><td><h3>Current score</h3></td></tr>
-        <tr><td>  <input id="member_count" type="text" name="mem_cnt" value="10"></td><td><div id="result"></p></td></tr>
-  </table>
-    </p>
-  <p>
- <button type="button" class="btn btn-success" onclick="document.getElementById('result').innerHTML=incrementIteration();">Add ITeration</button>
-  </p>
-  <p id="logarea" style="max-height: 100px"></p>           
-</div>
+  <div class="container-fluid">
 
+    <div class="row bg-secondary">
+      <div class="col-md-2"></div>
+      <div class="col-md-3"></div>
+      <div class="col-md-6" style="background-color: teal; text-align: center;">
+        <h2 class="text-white">आवर्तन मोजदाद</h2>
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div class="row bg-info align-items-center">
+      <div class="col-md-2"></div>
+      <div class="col-md-3 table-responsive">
+        <table class="table table-borderless">
+          <tr>
+            <td style="text-align: left;">
+              <span style="font-size: 20px; text-align: center;">Members</span>
+            </td>
+            <td style="text-align: left;">
+              <span style="font-size: 20px; text-align: center;">Total</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <button type="button" class="btn btn-secondary btn-md btn-rounded" onclick="reduceMember();">-</button>
+                <input id="member_count" type="text" class="form-control" name="mem_cnt" value="10"
+                  style="display: inline; width: 40%;">
+                <button type="button" class="btn btn-success btn-md btn-rounded" onclick="addMember();">+</button>
+              </div>
+            </td>
+            <td>
+              <div>
+                <span id="result" style="font-size:200%; color: white;">0</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-6"></div>
+      <div class="col-md-3"></div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div class="row bg-secondary">
+      <div class="col-md-2"></div>
+      <div class="col-md-3"></div>
+      <div class="col-md-6"></div>
+      <div class="col-md-3"></div>
+      <div class="col-md-2" style="background-color: #76a4aff2; text-align: right;">
+        <button type="button" class="btn btn-success btn-lg btn-rounded" onclick="incrementIteration();">+ >></button>
+      </div>
+    </div>
+
+    <div class="row bg-light">
+      <div class="col-md-2"></div>
+      <div class="col-md-3" style="background-color: #608e8e; text-align: center;">
+        <div id="logarea"></div>
+      </div>
+      <div class="col-md-6"></div>
+      <div class="col-md-3"></div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div id="dd"></div>
+  </div>
+  <footer class="footer"><small>Joyfully created by Sandeep Satavlekar<br>sandysat@hotmail.com<br>V 0.1</small></footer>
 </body>
-</html>
 
+</html>
