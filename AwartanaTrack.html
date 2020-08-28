@@ -59,8 +59,11 @@
 
     function reduceMember() {
       var cur_val = document.getElementById('member_count').value - 1;
-      if (cur_val < 1) {
+      if (cur_val < 1 || isNaN(cur_val)) {
         cur_val = 1;
+      }
+      if (cur_val > 99998 || isNaN(cur_val)) {
+        cur_val = 99998;
       }
       document.getElementById('member_count').value = cur_val;
       return true;
@@ -68,6 +71,12 @@
 
     function addMember() {
       var cur_val = parseInt(document.getElementById('member_count').value) + 1;
+      if (cur_val < 1 || isNaN(cur_val)) {
+        cur_val = 1;
+      }
+      if (cur_val > 99999 || isNaN(cur_val)) {
+        cur_val = 99999;
+      }
       document.getElementById('member_count').value = cur_val;
       return true;
     }
@@ -139,25 +148,26 @@
       <div class="col-md-3 table-responsive">
         <table class="table table-borderless">
           <tr>
-            <td style="text-align: left;">
+            <td style="text-align: center; padding: 0rem;">
               <span style="font-size: 20px; text-align: center;">Members</span>
             </td>
-            <td style="text-align: left;">
+            <td style="text-align: center; padding: 0rem;">
               <span style="font-size: 20px; text-align: center;">Total</span>
             </td>
           </tr>
           <tr>
-            <td>
-              <div>
+            <td style="vertical-align: middle; padding: 0rem;">
+              <div style="text-align: center;">
                 <button type="button" class="btn btn-secondary btn-md btn-rounded" onclick="reduceMember();">-</button>
-                <input id="member_count" type="text" class="form-control" name="mem_cnt" value="10"
-                  style="display: inline; width: 40%;">
+                <input id="member_count" type="text" class="form-control" name="mem_cnt" value="10" maxlength="5"
+                  style="display: inline; width: 70px;">
                 <button type="button" class="btn btn-success btn-md btn-rounded" onclick="addMember();">+</button>
               </div>
             </td>
-            <td>
+            <td style="vertical-align: middle; padding: 0rem;">
               <div>
-                <span id="result" style="font-size:200%; color: white;">0</span>
+                <div id="result" style="font-size:200%; color: white; text-align: center; vertical-align: text-top;">0
+                </div>
               </div>
             </td>
           </tr>
