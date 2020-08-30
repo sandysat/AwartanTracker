@@ -7,21 +7,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-  <!--
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
--->
   <style>
+    .container-fluid {
+      width: 100%;
+      padding-right: 1px;
+      padding-left: 1px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .nav-tabs .nav-link {
+      border: transparent;
+    }
+
+    .nav-tabs .nav-link.active {
+      color: #ffffff;
+      background-color: #008080b0;
+    }
+
+    .nav-tabs>a {
+      color: #ffffff;
+      text-decoration: none;
+      background-color: transparent;
+    }
+
     .btn-rounded {
-      border-radius: 45%;
+      border-radius: 40%;
+    }
+
+    table .table .table-borderless .table-responsive.col {
+      padding-left: 0px;
+      padding-right: 0px;
     }
 
     .footer {
-      position: relative;
+      position: fixed;
       left: 0px;
       bottom: 0px;
       width: 100%;
@@ -106,13 +130,14 @@
           }
           num_iterations += (parseInt(logarray[i][0]) * parseInt(logarray[i][1]));
         }
-        log += "</table>";
+        log += "</table><center>";
         if (delflag != 'Y') {
           log += "<small><a href='#' onclick='showResult(" + '"Y"' +
             ");' style='color: red;'>Enable Deletion</a></small>";
         } else {
           log += "<small><a href='#' onclick='showResult();' style='color: green;'>Disable Deletion</a></small>";
         }
+        log += "</center>";
       } else {
         log = "";
       }
@@ -123,77 +148,189 @@
   </script>
 </head>
 
-<body>
+<body style="background-color: black;">
   <div class="container-fluid">
-
-    <div class="row bg-secondary">
-      <div class="col-md-2"></div>
-      <div class="col-md-3"></div>
-      <div class="col-md-6" style="background-color: teal; text-align: center;">
-        <h2 class="text-white">आवर्तन मोजदाद</h2>
+    <div class="row justify-content-center" style="background-color: teal;">
+      <div>
+        <span class="text-white" style="font-size: 75%;">|| श्री गणॆशाय नम: ||</span><br>
+        <span class="text-white" style="font-size: 100%;"><Span id="stotra"></Span>आवर्तन मोजदाद</span><br>
       </div>
-      <div class="col-md-3"></div>
-      <div class="col-md-2"></div>
     </div>
+    <nav>
+      <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link" id="nav-Setup-tab" data-toggle="tab" href="#nav-Setup" role="tab"
+          aria-controls="nav-Setup" aria-selected="false">Setup</a>
 
-    <div class="row bg-info align-items-center">
-      <div class="col-md-2"></div>
-      <div class="col-md-3 table-responsive">
-        <table class="table table-borderless">
-          <tr>
-            <td style="text-align: center; padding: 0rem;">
-              <span style="font-size: 20px; text-align: center;">Members</span>
-            </td>
-            <td style="text-align: center; padding: 0rem;">
-              <span style="font-size: 20px; text-align: center;">Total</span>
-            </td>
-          </tr>
-          <tr>
-            <td style="vertical-align: middle; padding: 0rem;">
-              <div style="text-align: center;">
-                <button type="button" class="btn btn-secondary btn-md btn-rounded" onclick="reduceMember();">-</button>
-                <input id="member_count" type="text" class="form-control" name="mem_cnt" value="10" maxlength="5"
-                  style="display: inline; width: 70px;">
-                <button type="button" class="btn btn-success btn-md btn-rounded" onclick="addMember();">+</button>
-              </div>
-            </td>
-            <td style="vertical-align: middle; padding: 0rem;">
-              <div>
-                <div id="result" style="font-size:200%; color: white; text-align: center; vertical-align: text-top;">0
+        <a class="nav-item nav-link active" id="nav-Monitor-tab" data-toggle="tab" href="#nav-Monitor" role="tab"
+          aria-controls="nav-Monitor" aria-selected="true">Monitor</a>
+
+        <a class="nav-item nav-link" id="nav-Analyze-tab" data-toggle="tab" href="#nav-Analyze" role="tab"
+          aria-controls="nav-Analyze" aria-selected="false">Analyze</a>
+      </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent" style="background-color: #008080b0;">
+      <div class="tab-pane fade" id="nav-Setup" role="tabpanel" aria-labelledby="nav-Setup-tab">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua.</p>
+      </div>
+      <div class="tab-pane fade show active" id="nav-Monitor" role="tabpanel" aria-labelledby="nav-Monitor-tab">
+        <div class="align-items-center">
+          <table class="table table-borderless">
+            <tr>
+              <td style="text-align: left; padding: 0rem;">
+                <span style="font-size: 20px; text-align: left; color: white; padding: 0 0 0 25px;">Members</span>
+              </td>
+              <td style="text-align: center; padding: 0rem;">
+                <span style="font-size: 20px; text-align: center; color: white;">Total</span>
+              </td>
+              <td rowspan="2" class="text-right" style="vertical-align: middle; padding: 0 2px;">
+                <button class="btn btn-success" style="padding: 25px 0px 25px;" onclick="incrementIteration();">
+                  +&gt;&gt; </button>
+              </td>
+            </tr>
+            <tr>
+              <td style="vertical-align: middle; padding: 0px;">
+                <div style="text-align: left; padding-left: 5px;">
+                  <button type="button" class="btn btn-secondary btn-sm btn-rounded"
+                    onclick="reduceMember();">-</button>
+                  <input id="member_count" type="text" class="form-control" name="mem_cnt" value="10" maxlength="5"
+                    style="display: inline; width: 70px;">
+                  <button type="button" class="btn btn-success btn-sm btn-rounded" onclick="addMember();">+</button>
                 </div>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class="col-md-6"></div>
-      <div class="col-md-3"></div>
-      <div class="col-md-2"></div>
-    </div>
+              </td>
+              <td style="vertical-align: middle; padding: 0rem;">
+                <div style="text-align: right;">
+                  <div id="result" style="font-size: 25pt; color: white; padding: 0px;">0
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col" style="text-align: center; padding: 0px 16px 0rem 15px;">
+            <pre id="sname" class="pre-scrollable"
+              style="font-family:Arial, Helvetica, sans-serif; color: #c4d9da; border: solid 1px turquoise;">
+    ॥श्री गणपत्यथर्वशीर्ष॥
+    
+    हरिः ॐ नमस्ते गणपतये॥
+    
+    त्वमेव प्रत्यक्षं तत्त्वमसि॥ त्वमेव केवलं कर्ताऽसि॥
+    
+    त्वमेव केवलं धर्ताऽसि॥ त्वमेव केवलं हर्ताऽसि॥
+    
+    त्वमेव सर्वं खल्विदं ब्रह्मासि॥
+    
+    त्वं साक्षादात्माऽसि नित्यम्॥१॥
+    
+    ऋतं वच्मि(वदिष्यामि)॥ सत्यं वच्मि(वदिष्यामि)॥२॥
+    
+    अव त्वं माम्॥ अव वक्तारम्॥ अव श्रोतारम्॥
+    
+    अव दातारम्॥ अव धातारम्॥
+    
+    अवानूचानमव शिष्यम्॥
+    
+    अव पश्चात्तात्॥ अव पुरस्तात्॥
+    
+    अवोत्तरात्तात्॥ अव दक्षिणात्तात्॥
+    
+    अव चोर्ध्वात्तात्॥ अवाधरात्तात्॥
+    
+    सर्वतो मां पाहि पाहि समंतात्॥३॥
+    
+    त्वं वाङ्मयस्त्वं चिन्मयः॥
+    
+    त्वमानंदमयस्त्वं ब्रह्ममयः॥
+    
+    त्वं सच्चिदानंदाद्वितीयोऽसि॥
+    
+    त्वं प्रत्यक्षं ब्रह्मासि॥
+    
+    त्वं ज्ञानमयो विज्ञानमयोऽसि॥४॥
+    
+    सर्वं जगदिदं त्वत्तो जायते॥
+    
+    सर्वं जगदिदं त्वत्तस्तिष्ठति॥
+    
+    सर्वं जगदिदं त्वयि लयमेष्यति॥
+    
+    सर्वं जगदिदं त्वयि प्रत्येति॥
+    
+    त्वं भूमिरापोऽनलोऽनिलो नभः॥
+    
+    त्वं चत्वारि वाक्पदानि॥५॥
+    
+    त्वं गुणत्रयातीतः त्वमवस्थात्रयातीतः॥
+    
+    त्वं देहत्रयातीतः॥ त्वं कालत्रयातीतः॥
+    
+    त्वं मूलाधारस्थितोऽसि नित्यम्॥
+    
+    त्वं शक्तित्रयात्मकः॥
+    
+    त्वां योगिनो ध्यायंति नित्यम्॥
+    
+    त्वं ब्रह्मा त्वं विष्णुस्त्वं रुद्रस्त्वं
+    
+    इन्द्रस्त्वं अग्निस्त्वं वायुस्त्वं सूर्यस्त्वं चंद्रमास्त्वं
+    
+    ब्रह्मभूर्भुवःस्वरोम्॥६॥
+    
+    गणादिं पूर्वमुच्चार्य वर्णादिं तदनंतरम्॥
+    
+    अनुस्वारः परतरः॥ अर्धेन्दुलसितम्॥ तारेण ऋद्धम्॥
+    
+    एतत्तव मनुस्वरूपम्॥ गकारः पूर्वरूपम्॥
+    
+    अकारो मध्यमरूपम्॥ अनुस्वारश्चान्त्यरूपम्॥
+    
+    बिन्दुरुत्तररूपम्॥ नादः संधानम्॥
+    
+    संहितासंधिः॥ सैषा गणेशविद्या॥
+    
+    गणकऋषिः॥ निचृद्गायत्रीच्छंदः॥
+    
+    गणपतिर्देवता॥ ॐ गं गणपतये नमः॥७॥
+    
+    एकदंताय विद्महे। वक्रतुण्डाय धीमहि॥
+    
+    तन्नो दंतिः प्रचोदयात्॥८॥
+    
+    एकदंतं चतुर्हस्तं पाशमंकुशधारिणम्॥
+    
+    रदं च वरदं हस्तैर्बिभ्राणं मूषकध्वजम्॥
+    
+    रक्तं लंबोदरं शूर्पकर्णकं रक्तवाससम्॥
+    
+    रक्तगंधानुलिप्तांगं रक्तपुष्पैः सुपूजितम्॥
+    
+    भक्तानुकंपिनं देवं जगत्कारणमच्युतम्॥
+    
+    आविर्भूतं च सृष्ट्यादौ प्रकृतेः पुरुषात्परम्॥
+    
+    एवं ध्यायति यो नित्यं स योगी योगिनां वरः॥९॥
+    
+    नमो व्रातपतये। नमो गणपतये। नमः प्रमथपतये।
+    
+    नमस्तेऽस्तु लंबोदरायैकदंताय।
+    
+    विघ्ननाशिने शिवसुताय। श्रीवरदमूर्तये नमो नमः॥१०॥
 
-    <div class="row bg-secondary">
-      <div class="col-md-2"></div>
-      <div class="col-md-3"></div>
-      <div class="col-md-6"></div>
-      <div class="col-md-3"></div>
-      <div class="col-md-2" style="background-color: #76a4aff2; text-align: right;">
-        <button type="button" class="btn btn-success btn-lg btn-rounded" onclick="incrementIteration();">+ >></button>
+
+            </pre>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-Analyze" role="tabpanel" aria-labelledby="nav-Analyze-tab">
+        <pre class="pre-scrollable"><span id="logarea"></span></pre>
       </div>
     </div>
-
-    <div class="row bg-light">
-      <div class="col-md-2"></div>
-      <div class="col-md-3" style="background-color: #608e8e; text-align: center;">
-        <div id="logarea"></div>
-      </div>
-      <div class="col-md-6"></div>
-      <div class="col-md-3"></div>
-      <div class="col-md-2"></div>
-    </div>
-
-    <div id="dd"></div>
   </div>
-  <footer class="footer"><small>Joyfully created by Sandeep Satavlekar<br>sandysat@hotmail.com<br>V 0.2</small></footer>
+  <footer class="footer"><small>Joyfully created by Sandeep
+      Satavlekar<br> sandysat@hotmail.com<br> V 0.2</small> </footer>
+
 </body>
 
 </html>
