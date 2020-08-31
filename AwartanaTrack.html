@@ -39,16 +39,17 @@
       border-radius: 40%;
     }
 
-    table .table .table-borderless .table-responsive.col {
+    table .table .table-borderless .table-responsive.col td {
       padding-left: 0px;
       padding-right: 0px;
+      color: white;
     }
 
     .footer {
       position: fixed;
       left: 0px;
       bottom: 0px;
-      width: 100%;
+      width: 99%;
       background-color: teal;
       color: white;
       vertical-align: text-bottom;
@@ -57,9 +58,117 @@
   </style>
 
   <script>
+    var atharvasheersha =
+      "॥श्री गणपत्यथर्वशीर्ष॥<br><br> हरिः ॐ नमस्ते गणपतये॥<br> त्वमेव प्रत्यक्षं तत्त्वमसि॥ त्वमेव केवलं कर्ताऽसि॥<br> त्वमेव केवलं धर्ताऽसि॥ त्वमेव केवलं हर्ताऽसि॥<br> त्वमेव सर्वं खल्विदं ब्रह्मासि॥<br> त्वं साक्षादात्माऽसि नित्यम्॥१॥<br><br> ऋतं वच्मि(वदिष्यामि)॥ सत्यं वच्मि(वदिष्यामि)॥२॥<br><br> अव त्वं माम्॥ अव वक्तारम्॥ अव श्रोतारम्॥<br> अव दातारम्॥ अव धातारम्॥<br> अवानूचानमव शिष्यम्॥<br> अव पश्चात्तात्॥ अव पुरस्तात्॥<br> अवोत्तरात्तात्॥ अव दक्षिणात्तात्॥<br> अव चोर्ध्वात्तात्॥ अवाधरात्तात्॥<br> सर्वतो मां पाहि पाहि समंतात्॥३॥<br><br> त्वं वाङ्मयस्त्वं चिन्मयः॥<br> त्वमानंदमयस्त्वं ब्रह्ममयः॥<br> त्वं सच्चिदानंदाद्वितीयोऽसि॥<br> त्वं प्रत्यक्षं ब्रह्मासि॥<br> त्वं ज्ञानमयो विज्ञानमयोऽसि॥४॥<br><br> सर्वं जगदिदं त्वत्तो जायते॥<br> सर्वं जगदिदं त्वत्तस्तिष्ठति॥<br> सर्वं जगदिदं त्वयि लयमेष्यति॥<br> सर्वं जगदिदं त्वयि प्रत्येति॥<br> त्वं भूमिरापोऽनलोऽनिलो नभः॥<br> त्वं चत्वारि वाक्पदानि॥५॥<br><br> त्वं गुणत्रयातीतः त्वमवस्थात्रयातीतः॥<br> त्वं देहत्रयातीतः॥ त्वं कालत्रयातीतः॥<br> त्वं मूलाधारस्थितोऽसि नित्यम्॥<br> त्वं शक्तित्रयात्मकः॥<br> त्वां योगिनो ध्यायंति नित्यम्॥<br> त्वं ब्रह्मा त्वं विष्णुस्त्वं रुद्रस्त्वं<br> इन्द्रस्त्वं अग्निस्त्वं वायुस्त्वं सूर्यस्त्वं चंद्रमास्त्वं<br> ब्रह्मभूर्भुवःस्वरोम्॥६॥<br><br> गणादिं पूर्वमुच्चार्य वर्णादिं तदनंतरम्॥<br> अनुस्वारः परतरः॥ अर्धेन्दुलसितम्॥ तारेण ऋद्धम्॥<br> एतत्तव मनुस्वरूपम्॥ गकारः पूर्वरूपम्॥<br> अकारो मध्यमरूपम्॥ अनुस्वारश्चान्त्यरूपम्॥<br> बिन्दुरुत्तररूपम्॥ नादः संधानम्॥<br> संहितासंधिः॥ सैषा गणेशविद्या॥<br> गणकऋषिः॥ निचृद्गायत्रीच्छंदः॥<br> गणपतिर्देवता॥ ॐ गं गणपतये नमः॥७॥<br><br> एकदंताय विद्महे। वक्रतुण्डाय धीमहि॥<br> तन्नो दंतिः प्रचोदयात्॥८॥<br><br> एकदंतं चतुर्हस्तं पाशमंकुशधारिणम्॥<br> रदं च वरदं हस्तैर्बिभ्राणं मूषकध्वजम्॥<br> रक्तं लंबोदरं शूर्पकर्णकं रक्तवाससम्॥<br> रक्तगंधानुलिप्तांगं रक्तपुष्पैः सुपूजितम्॥<br> भक्तानुकंपिनं देवं जगत्कारणमच्युतम्॥<br> आविर्भूतं च सृष्ट्यादौ प्रकृतेः पुरुषात्परम्॥<br> एवं ध्यायति यो नित्यं स योगी योगिनां वरः॥९॥<br><br> नमो व्रातपतये। नमो गणपतये। नमः प्रमथपतये।<br> नमस्तेऽस्तु लंबोदरायैकदंताय।<br> विघ्ननाशिने शिवसुताय। श्रीवरदमूर्तये नमो नमः॥१०॥<br><br>";
+
+    var countarray = [
+      ['iterations', 'members', 'title', 'text'],
+      [21, 1, "अथर्वशीर्ष २१", atharvasheersha],
+      [1000, 10, "अथर्वशीर्ष १०००", atharvasheersha],
+      [108, 1, "गायत्री मंत्र",
+        "|| गायत्री मंत्र ||<br><br>ॐ भूर्भुव: स्व: |<br> तत्सवितुर्वरेण्यम् भर्गोदेवस्य धिमहि |<br> धियो यो न: प्रचोदयात् ||<br>"
+      ],
+      [108, 1, "रामनाम जप", "श्रीराम जय राम जय जय राम ||"],
+      [108, 1, "स्वामी समर्थ नामजप",
+        "श्री स्वामी समर्थ जय जय स्वामी समर्थ |<br>सद्गुरु स्वामी समर्थ जय जय स्वामी समर्थ ||"
+      ],
+      [1, 1, "नवग्रह स्तोत्र",
+        "|| नवग्रह स्तोत्र ||<br><br> श्री गणेशाय नमः<br><br> जपाकुसुम संकाशं काश्यपेयं महदद्युतिम् |<br> तमोरिंसर्वपापघ्नं प्रणतोSस्मि दिवाकरम् || १ ||<br><br> दधिशंखतुषाराभं क्षीरोदार्णव संभवम् |<br> नमामि शशिनं सोमं शंभोर्मुकुट भूषणम् || २ ||<br><br> धरणीगर्भ संभूतं विद्युत्कांति समप्रभम् |<br> कुमारं शक्तिहस्तं तं मंगलं प्रणाम्यहम् || ३ ||<br><br> प्रियंगुकलिकाश्यामं रुपेणाप्रतिमं बुधम् |<br> सौम्यं सौम्यगुणोपेतं तं बुधं प्रणमाम्यहम् || ४ ||<br><br> देवानांच ऋषीनांच गुरुं कांचन सन्निभम् |<br> बुद्धिभूतं त्रिलोकेशं तं नमामि बृहस्पतिम् || ५ ||<br><br> हिमकुंद मृणालाभं दैत्यानां परमं गुरुम् |<br> सर्वशास्त्र प्रवक्तारं भार्गवं प्रणमाम्यहम् || ६ ||<br><br> नीलांजन समाभासं रविपुत्रं यमाग्रजम् |<br> छायामार्तंड संभूतं तं नमामि शनैश्चरम् || ७ ||<br><br> अर्धकायं महावीर्यं चंद्रादित्य विमर्दनम् |<br> सिंहिकागर्भसंभूतं तं राहुं प्रणमाम्यहम् || ८ ||<br><br> पलाशपुष्पसंकाशं तारकाग्रह मस्तकम् |<br> रौद्रंरौद्रात्मकं घोरं तं केतुं प्रणमाम्यहम् || ९ ||<br><br> इति श्रीव्यासमुखोग्दीतम् यः पठेत् सुसमाहितः |<br> दिवा वा यदि वा रात्रौ विघ्न शांतिर्भविष्यति || १० ||<br><br> नरनारी नृपाणांच भवेत् दुःस्वप्ननाशनम् |<br> ऐश्वर्यमतुलं तेषां आरोग्यं पुष्टिवर्धनम् || ११ ||<br><br> ग्रहनक्षत्रजाः पीडास्तस्कराग्निसमुभ्दवाः |<br> ता सर्वाःप्रशमं यान्ति व्यासोब्रुते न संशयः || १२ ||<br><br> || इति श्री वेद व्यास विरचितम् आदित्यादी नवग्रह स्तोत्रं संपूर्णं ||<br><br>"
+      ],
+      [108, 1, "महामृत्युञ्जय मन्त्र जप",
+        "|| महामृत्युञ्जय मन्त्र ||<br><br>ॐ त्र्य॑म्बकं यजामहे सु॒गन्धिं॑ पुष्टि॒वर्ध॑नम् ।<br>उ॒र्वा॒रु॒कमि॑व॒ बन्ध॑नान् मृ॒त्योर्मुक्षीय॒ माऽमृता॑त्।"
+      ],
+    ];
+
     var logarray = [
       ["0", "0"],
     ];
+
+    var countarrayIndex = 1;
+    var num_iterations = 0;
+
+    function setUp() {
+      document.getElementById('stotratext').innerHTML = countarray[1][3];
+      setTarget(1);
+      getDropDownList();
+      return true;
+    }
+
+    function getDropDownList() {
+
+      var optionList = [0];
+      for (let index = 1; index < countarray.length; index++) {
+        optionList[index] = countarray[index][2];
+      }
+
+      optionList.splice(0, 1);
+
+      var combo = $(
+        '<select class="custom-select custom-select-sm mb-sm-0" name="mantraname" id="mantraname" onclick="setTarget(this.value);" onchange="setTarget(this.value);"></select>'
+      ).attr("id", "mantraname").attr("name", "mantraname");
+
+      $.each(optionList, function (i, el) {
+        combo.append("<option value='" + (i + 1) + "'>" + el + "</option>");
+      });
+
+      $("#dropdown").append(combo);
+      return true;
+    }
+
+    function setTarget(arg) {
+
+      countarrayIndex = arg;
+      document.getElementById('sankalp').value = countarray[arg][0];
+      document.getElementById('member_count').value = countarray[arg][1];
+      document.getElementById('stotratext').innerHTML = countarray[arg][3];
+      document.getElementById('stotra').innerHTML = countarray[arg][2] + ' ';
+      reset();
+      return true;
+    }
+
+    function reset() {
+      //reset log
+      logarray = [
+        ["0", "0"],
+      ];
+
+      //reset completed
+      num_iterations = 0;
+      showResult();
+    }
+
+    function increaseTarget() {
+      var cur_val = parseInt(document.getElementById('sankalp').value) + parseInt(countarray[countarrayIndex][0]);
+      if (cur_val < 1 || isNaN(cur_val)) {
+        cur_val = parseInt(countarray[countarrayIndex][0]);
+      }
+      if (cur_val > 99999 || isNaN(cur_val)) {
+        cur_val = 99999;
+      }
+      document.getElementById('sankalp').value = cur_val;
+      showProgress();
+
+      return true;
+
+    }
+
+    function reduceTarget() {
+      var cur_val = document.getElementById('sankalp').value - countarray[countarrayIndex][0];
+      if (cur_val < 1 || isNaN(cur_val)) {
+        cur_val = parseInt(countarray[countarrayIndex][0]);
+      }
+      if (cur_val > 99998 || isNaN(cur_val)) {
+        cur_val = 99998;
+      }
+      document.getElementById('sankalp').value = cur_val;
+      showProgress();
+
+      return true;
+    }
+
+    function begin() {
+      $('.nav-tabs a[href=\'#nav-Monitor\']').tab('show');
+    }
 
     function incrementIteration() {
       var current_memcount = parseInt(document.getElementById('member_count').value);
@@ -111,20 +220,20 @@
     }
 
     function showResult(delflag) {
-      var num_iterations = 0;
+      num_iterations = 0;
       var log =
-        "<h5 style='color: #ffffff;'>Log</h5><table class='table table-striped'><tr><th>sr</th><th>members</th><th>times</th><th>result</th>";
+        "<h5 style='color: #ffffff;'>Log</h5><table class='table table-striped' style='color: #7fe1f0;'><tr><th>sr</th><th>members</th><th>times</th><th>result</th>";
       if (delflag == 'Y') {
         log += "<th>delete</th></tr>";
       }
       if (logarray.length > 1) {
         for (i = 1; i < logarray.length; i++) {
-          log += "<tr><td>" + i + "</td><td>" + logarray[i][0] + "</td><td>" + logarray[i][1] + "</td><td>" + (parseInt(
-            logarray[i][0]) * parseInt(logarray[i][1])) + "</td>";
+          log += "<tr><td>" + i + "</td><td>" + logarray[i][0] + "</td><td>" + logarray[i][1] + "</td><td>" + (
+            parseInt(
+              logarray[i][0]) * parseInt(logarray[i][1])) + "</td>";
           if (delflag == 'Y') {
             log += "<td><a href='#' title='Delete' onclick='removeRow(" + i +
               ");' style='color: red;'> &times; </a></td></tr>";
-            // <i class='fa fa-trash'></i>
           } else {
             log += "</tr>";
           }
@@ -139,198 +248,142 @@
         }
         log += "</center>";
       } else {
-        log = "";
+        log = "<br><br>A log of iterations would be shown here,<br> when there is at least one iteration.";
       }
       document.getElementById('logarea').innerHTML = log;
       document.getElementById('result').innerHTML = num_iterations;
+
+      showProgress();
+      return true;
+    }
+
+    function showProgress() {
+      var target = parseInt(document.getElementById('sankalp').value);
+      var percent = ((num_iterations / target) * 100).toFixed(2);
+      document.getElementById('progress').innerHTML = (target - num_iterations) + ' of ' + target + ' remaining (' +
+        percent + '% complete)';
+      document.getElementById('progress').setAttribute("aria-valuenow", percent);
+      document.getElementById('progress').setAttribute("style", "width: " + percent + "%;");
+
       return true;
     }
   </script>
 </head>
 
-<body style="background-color: black;">
+<body style="background-color: black;" onload="setUp();">
   <div class="container-fluid">
     <div class="row justify-content-center" style="background-color: teal;">
-      <div>
+      <div style="text-align: center;">
         <span class="text-white" style="font-size: 75%;">|| श्री गणॆशाय नम: ||</span><br>
         <span class="text-white" style="font-size: 100%;"><Span id="stotra"></Span>आवर्तन मोजदाद</span><br>
       </div>
     </div>
     <nav>
       <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
-        <a class="nav-item nav-link" id="nav-Setup-tab" data-toggle="tab" href="#nav-Setup" role="tab"
-          aria-controls="nav-Setup" aria-selected="false">Setup</a>
+        <a class="nav-item nav-link active" id="nav-Setup-tab" data-toggle="tab" href="#nav-Setup" role="tab"
+          aria-controls="nav-Setup" aria-selected="true">Setup</a>
 
-        <a class="nav-item nav-link active" id="nav-Monitor-tab" data-toggle="tab" href="#nav-Monitor" role="tab"
-          aria-controls="nav-Monitor" aria-selected="true">Monitor</a>
+        <a class="nav-item nav-link" id="nav-Monitor-tab" data-toggle="tab" href="#nav-Monitor" role="tab"
+          aria-controls="nav-Monitor" aria-selected="false">Monitor</a>
 
         <a class="nav-item nav-link" id="nav-Analyze-tab" data-toggle="tab" href="#nav-Analyze" role="tab"
           aria-controls="nav-Analyze" aria-selected="false">Analyze</a>
       </div>
     </nav>
-
     <div class="tab-content" id="nav-tabContent" style="background-color: #008080b0;">
-      <div class="tab-pane fade" id="nav-Setup" role="tabpanel" aria-labelledby="nav-Setup-tab">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua.</p>
-      </div>
-      <div class="tab-pane fade show active" id="nav-Monitor" role="tabpanel" aria-labelledby="nav-Monitor-tab">
+      <div class="tab-pane fade show active" id="nav-Setup" role="tabpanel" aria-labelledby="nav-Setup-tab">
         <div class="align-items-center">
           <table class="table table-borderless">
             <tr>
-              <td style="text-align: left; padding: 0rem;">
-                <span style="font-size: 20px; text-align: left; color: white; padding: 0 0 0 25px;">Members</span>
+              <td style="text-align: right;"><span style="font-size: 15px; color: white; padding: 0 0 0 25px;">Choose
+                  (निवडा)</span>
               </td>
-              <td style="text-align: center; padding: 0rem;">
-                <span style="font-size: 20px; text-align: center; color: white;">Total</span>
+              <td>
+                <div id="dropdown" style="display: inline-flex;"></div>
               </td>
-              <td rowspan="2" class="text-right" style="vertical-align: middle; padding: 0 2px;">
-                <button class="btn btn-success" style="padding: 25px 0px 25px;" onclick="incrementIteration();">
-                  +&gt;&gt; </button>
-              </td>
-            </tr>
-            <tr>
-              <td style="vertical-align: middle; padding: 0px;">
-                <div style="text-align: left; padding-left: 5px;">
-                  <button type="button" class="btn btn-secondary btn-sm btn-rounded"
-                    onclick="reduceMember();">-</button>
-                  <input id="member_count" type="text" class="form-control" name="mem_cnt" value="10" maxlength="5"
-                    style="display: inline; width: 70px;">
-                  <button type="button" class="btn btn-success btn-sm btn-rounded" onclick="addMember();">+</button>
-                </div>
-              </td>
-              <td style="vertical-align: middle; padding: 0rem;">
-                <div style="text-align: right;">
-                  <div id="result" style="font-size: 25pt; color: white; padding: 0px;">0
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </table>
         </div>
-        <div class="row">
-          <div class="col" style="text-align: center; padding: 0px 16px 0rem 15px;">
-            <pre id="sname" class="pre-scrollable"
-              style="font-family:Arial, Helvetica, sans-serif; color: #c4d9da; border: solid 1px turquoise;">
-    ॥श्री गणपत्यथर्वशीर्ष॥
-    
-    हरिः ॐ नमस्ते गणपतये॥
-    
-    त्वमेव प्रत्यक्षं तत्त्वमसि॥ त्वमेव केवलं कर्ताऽसि॥
-    
-    त्वमेव केवलं धर्ताऽसि॥ त्वमेव केवलं हर्ताऽसि॥
-    
-    त्वमेव सर्वं खल्विदं ब्रह्मासि॥
-    
-    त्वं साक्षादात्माऽसि नित्यम्॥१॥
-    
-    ऋतं वच्मि(वदिष्यामि)॥ सत्यं वच्मि(वदिष्यामि)॥२॥
-    
-    अव त्वं माम्॥ अव वक्तारम्॥ अव श्रोतारम्॥
-    
-    अव दातारम्॥ अव धातारम्॥
-    
-    अवानूचानमव शिष्यम्॥
-    
-    अव पश्चात्तात्॥ अव पुरस्तात्॥
-    
-    अवोत्तरात्तात्॥ अव दक्षिणात्तात्॥
-    
-    अव चोर्ध्वात्तात्॥ अवाधरात्तात्॥
-    
-    सर्वतो मां पाहि पाहि समंतात्॥३॥
-    
-    त्वं वाङ्मयस्त्वं चिन्मयः॥
-    
-    त्वमानंदमयस्त्वं ब्रह्ममयः॥
-    
-    त्वं सच्चिदानंदाद्वितीयोऽसि॥
-    
-    त्वं प्रत्यक्षं ब्रह्मासि॥
-    
-    त्वं ज्ञानमयो विज्ञानमयोऽसि॥४॥
-    
-    सर्वं जगदिदं त्वत्तो जायते॥
-    
-    सर्वं जगदिदं त्वत्तस्तिष्ठति॥
-    
-    सर्वं जगदिदं त्वयि लयमेष्यति॥
-    
-    सर्वं जगदिदं त्वयि प्रत्येति॥
-    
-    त्वं भूमिरापोऽनलोऽनिलो नभः॥
-    
-    त्वं चत्वारि वाक्पदानि॥५॥
-    
-    त्वं गुणत्रयातीतः त्वमवस्थात्रयातीतः॥
-    
-    त्वं देहत्रयातीतः॥ त्वं कालत्रयातीतः॥
-    
-    त्वं मूलाधारस्थितोऽसि नित्यम्॥
-    
-    त्वं शक्तित्रयात्मकः॥
-    
-    त्वां योगिनो ध्यायंति नित्यम्॥
-    
-    त्वं ब्रह्मा त्वं विष्णुस्त्वं रुद्रस्त्वं
-    
-    इन्द्रस्त्वं अग्निस्त्वं वायुस्त्वं सूर्यस्त्वं चंद्रमास्त्वं
-    
-    ब्रह्मभूर्भुवःस्वरोम्॥६॥
-    
-    गणादिं पूर्वमुच्चार्य वर्णादिं तदनंतरम्॥
-    
-    अनुस्वारः परतरः॥ अर्धेन्दुलसितम्॥ तारेण ऋद्धम्॥
-    
-    एतत्तव मनुस्वरूपम्॥ गकारः पूर्वरूपम्॥
-    
-    अकारो मध्यमरूपम्॥ अनुस्वारश्चान्त्यरूपम्॥
-    
-    बिन्दुरुत्तररूपम्॥ नादः संधानम्॥
-    
-    संहितासंधिः॥ सैषा गणेशविद्या॥
-    
-    गणकऋषिः॥ निचृद्गायत्रीच्छंदः॥
-    
-    गणपतिर्देवता॥ ॐ गं गणपतये नमः॥७॥
-    
-    एकदंताय विद्महे। वक्रतुण्डाय धीमहि॥
-    
-    तन्नो दंतिः प्रचोदयात्॥८॥
-    
-    एकदंतं चतुर्हस्तं पाशमंकुशधारिणम्॥
-    
-    रदं च वरदं हस्तैर्बिभ्राणं मूषकध्वजम्॥
-    
-    रक्तं लंबोदरं शूर्पकर्णकं रक्तवाससम्॥
-    
-    रक्तगंधानुलिप्तांगं रक्तपुष्पैः सुपूजितम्॥
-    
-    भक्तानुकंपिनं देवं जगत्कारणमच्युतम्॥
-    
-    आविर्भूतं च सृष्ट्यादौ प्रकृतेः पुरुषात्परम्॥
-    
-    एवं ध्यायति यो नित्यं स योगी योगिनां वरः॥९॥
-    
-    नमो व्रातपतये। नमो गणपतये। नमः प्रमथपतये।
-    
-    नमस्तेऽस्तु लंबोदरायैकदंताय।
-    
-    विघ्ननाशिने शिवसुताय। श्रीवरदमूर्तये नमो नमः॥१०॥
-
-
-            </pre>
-          </div>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="nav-Analyze" role="tabpanel" aria-labelledby="nav-Analyze-tab">
-        <pre class="pre-scrollable"><span id="logarea"></span></pre>
+        </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><span style="font-size: 15px; color: white; padding: 0 0 0 25px;">Target
+              (संकल्प संख्या)</span></td>
+          <td>
+            <div style="display: inline-flex;">
+              <button type="button" class="btn btn-secondary btn-sm btn-rounded" onclick="reduceTarget();">-</button>
+              <input id="sankalp" type="text" class="form-control" name="sankalp" value="1000" maxlength="5"
+                style="display: inline; width: 70px;" onchange="showProgress();">
+              <button type="button" class="btn btn-success btn-sm btn-rounded" onclick="increaseTarget();">+</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: center;"> <button class="btn btn-success"
+              onclick="begin();">&gt;&gt;</button>
+          </td>
+        </tr>
+        </table>
       </div>
     </div>
+    <div class="tab-pane fade" id="nav-Monitor" role="tabpanel" aria-labelledby="nav-Monitor-tab">
+      <div class="align-items-center">
+        <table class="table table-borderless">
+          <tr>
+            <td style="text-align: left; padding: 0rem;">
+              <span style="font-size: 20px; text-align: left; color: white; padding: 0 0 0 25px;">Members</span>
+            </td>
+            <td style="text-align: right; padding: 0rem;">
+              <span style="font-size: 20px; color: white;">Completed</span>
+            </td>
+            <td rowspan="2" class="text-right" style="vertical-align: middle; padding: 0 2px;">
+              <button class="btn btn-success" style="padding: 25px 0px 25px;" onclick="incrementIteration();">
+                +&gt;&gt; </button>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: middle; padding: 0px;">
+              <div style="text-align: left; padding-left: 5px;">
+                <button type="button" class="btn btn-secondary btn-sm btn-rounded" onclick="reduceMember();">-</button>
+                <input id="member_count" type="text" class="form-control" name="mem_cnt" value="10" maxlength="5"
+                  style="display: inline; width: 70px;">
+                <button type="button" class="btn btn-success btn-sm btn-rounded" onclick="addMember();">+</button>
+              </div>
+            </td>
+            <td style="vertical-align: middle; padding: 0rem;">
+              <div style="text-align: right;">
+                <div id="result" style="font-size: 25pt; color: white; padding: 0px;">0
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center; padding: 0rem;" colspan="3">
+              <div class="progress">
+                <div id="progress" class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
+                  aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col" style="text-align: center; padding: 0px 16px 0rem 15px;">
+          <pre id="stotratext" class="pre-scrollable"
+            style="font-family:Arial, Helvetica, sans-serif; font-size: 1.1rem; color: #c4d9da; border: solid 1px turquoise;"></pre>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="nav-Analyze" role="tabpanel" aria-labelledby="nav-Analyze-tab">
+      <pre class="pre-scrollable"><span id="logarea" style="color: yellow;"></span></pre>
+    </div>
   </div>
-  <footer class="footer"><small>Joyfully created by Sandeep
-      Satavlekar<br> sandysat@hotmail.com<br> V 0.2</small> </footer>
-
+  </div>
+  <footer class="footer"><small>V 0.2 (31 Aug 2020) <br>Joyfully created by Sandeep
+      Satavlekar<br>To get latest version, provide feedback, suggestions, bug reports etc., <a
+        href="https://chat.whatsapp.com/JHkYfOTX2yc54WcZzk9j30" style="color:chartreuse;">click here to join
+        आवर्तनTracker group </a>on
+      whatsapp</small>
+  </footer>
 </body>
 
 </html>
