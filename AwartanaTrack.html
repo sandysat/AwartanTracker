@@ -138,30 +138,25 @@
       showResult();
     }
 
-    function increaseTarget() {
-      var cur_val = parseInt(document.getElementById('sankalp').value) + parseInt(countarray[countarrayIndex][0]);
+    function changeTarget(operation) {
+      var cur_val = parseInt($('#sankalp').val());
+
+      if (operation == 'add') {
+        cur_val += parseInt(countarray[countarrayIndex][0]);
+      } else if ((operation == 'reduce')) {
+        cur_val -= parseInt(countarray[countarrayIndex][0]);
+      }
+
       if (cur_val < 1 || isNaN(cur_val)) {
         cur_val = parseInt(countarray[countarrayIndex][0]);
       }
+
       if (cur_val > 99999 || isNaN(cur_val)) {
         cur_val = 99999;
       }
-      document.getElementById('sankalp').value = cur_val;
-      showProgress();
 
-      return true;
+      $('#sankalp').val(cur_val);
 
-    }
-
-    function reduceTarget() {
-      var cur_val = document.getElementById('sankalp').value - countarray[countarrayIndex][0];
-      if (cur_val < 1 || isNaN(cur_val)) {
-        cur_val = parseInt(countarray[countarrayIndex][0]);
-      }
-      if (cur_val > 99998 || isNaN(cur_val)) {
-        cur_val = 99998;
-      }
-      document.getElementById('sankalp').value = cur_val;
       showProgress();
 
       return true;
@@ -314,10 +309,11 @@
               (संकल्प संख्या)</span></td>
           <td>
             <div style="display: inline-flex;">
-              <button type="button" class="btn btn-secondary btn-sm btn-rounded" onclick="reduceTarget();">-</button>
+              <button type="button" class="btn btn-secondary btn-sm btn-rounded"
+                onclick="changeTarget('reduce');">-</button>
               <input id="sankalp" type="text" class="form-control" name="sankalp" value="1000" maxlength="5"
-                style="display: inline; width: 70px;" onchange="showProgress();">
-              <button type="button" class="btn btn-success btn-sm btn-rounded" onclick="increaseTarget();">+</button>
+                style="display: inline; width: 70px;" onchange="changeTarget('both');">
+              <button type="button" class="btn btn-success btn-sm btn-rounded" onclick="changeTarget('add');">+</button>
             </div>
           </td>
         </tr>
