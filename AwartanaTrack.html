@@ -272,9 +272,12 @@
     function showProgress() {
       var target = parseInt(document.getElementById('sankalp').value);
       var percent = ((num_iterations / target) * 100).toFixed(2);
-      document.getElementById('progress').innerHTML = (target - num_iterations) + ' of ' + target +
+      document.getElementById('progress').innerHTML =
+        '<span class="justify-content-center d-flex position-absolute w-100" style="color: black;">' + (target -
+          num_iterations) +
+        ' of ' + target +
         ' remaining (' +
-        percent + '% complete)';
+        percent + '% complete)</span>';
       document.getElementById('progress').setAttribute("aria-valuenow", percent);
       document.getElementById('progress').setAttribute("style", "width: " + percent + "%;");
 
@@ -306,7 +309,7 @@
     <div class="tab-content" id="nav-tabContent" style="background-color: #008080b0;">
       <div class="tab-pane fade show active" id="nav-Setup" role="tabpanel" aria-labelledby="nav-Setup-tab">
         <div class="align-items-center">
-          <table class="table table-borderless">
+          <table class="table table-borderless" style="padding: 1px;">
             <tr>
               <td style="text-align: right;"><span style="font-size: 15px; color: white; padding: 0 0 0 25px;">Choose
                   (निवडा)</span>
@@ -336,7 +339,6 @@
           </td>
         </tr>
         </table>
-        <hr>
         <div class="col" style="text-align: center; padding:0px 10px 5px 16px;">
           <pre class="pre-scrollable justify-content-center" style="height: 15em; border: 1px solid; color: white;">
 <small>Joyfully created by:<br>Sandeep Satavlekar
@@ -488,7 +490,7 @@ This version of आवर्तनTracker is licensed under <a rel="license" hre
           </tr>
           <tr>
             <td style="text-align: center; padding: 0rem;" colspan="3">
-              <div class="progress">
+              <div class="progress  position-relative">
                 <div id="progress" class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
                   aria-valuemin="0" aria-valuemax="100" style="width:0%;">
                 </div>
@@ -510,7 +512,7 @@ This version of आवर्तनTracker is licensed under <a rel="license" hre
     </div>
   </div>
   </div>
-  <footer class="footer"><span style="font-size: 0.65rem; line-height: 1;">v1.4<br>Friday, 04 Sept 2020.<br> भाद्रपद
+  <footer class="footer"><span style="font-size: 0.65rem; line-height: 1;">v1.5<br>Friday, 04 Sept 2020.<br> भाद्रपद
       कृ. द्वितिया विक्रम संवत् २०७७, शके १९४२.</span>
   </footer>
 </body>
