@@ -102,9 +102,20 @@
     var num_iterations = 0;
 
     function setUp() {
-      document.getElementById('stotratext').innerHTML = countarray[1][3];
-      setTarget(1);
+      $('#stotratext').html(countarray[1][3]);
+      setupSelected(1);
       getDropDownList();
+      return true;
+    }
+
+    function setupSelected(arg) {
+
+      countarrayIndex = arg;
+      $('#sankalp').val(countarray[arg][0]);
+      $('#member_count').val(countarray[arg][1]);
+      $('#stotratext').html(countarray[arg][3]);
+      $('#stotra').html(countarray[arg][2] + ' ');
+      reset();
       return true;
     }
 
@@ -118,7 +129,7 @@
       optionList.splice(0, 1);
 
       var combo = $(
-        '<select class="custom-select custom-select-sm mb-sm-0" name="mantraname" id="mantraname" onclick="setTarget(this.value);" onchange="setTarget(this.value);"></select>'
+        '<select class="custom-select custom-select-sm mb-sm-0" name="mantraname" id="mantraname" onclick="setupSelected(this.value);" onchange="setupSelected(this.value);"></select>'
       ).attr("id", "mantraname").attr("name", "mantraname");
 
       $.each(optionList, function (i, el) {
@@ -126,17 +137,6 @@
       });
 
       $("#dropdown").append(combo);
-      return true;
-    }
-
-    function setTarget(arg) {
-
-      countarrayIndex = arg;
-      document.getElementById('sankalp').value = countarray[arg][0];
-      document.getElementById('member_count').value = countarray[arg][1];
-      document.getElementById('stotratext').innerHTML = countarray[arg][3];
-      document.getElementById('stotra').innerHTML = countarray[arg][2] + ' ';
-      reset();
       return true;
     }
 
@@ -152,19 +152,18 @@
     }
 
     function changeTarget(operation) {
-      var cur_val = parseInt($('#sankalp').val());
+      var cur_val = parseInt($('#sankalp').val(), 10);
 
       if (operation == 'add') {
         cur_val += parseInt(countarray[countarrayIndex][0]);
       } else if ((operation == 'reduce')) {
         cur_val -= parseInt(countarray[countarrayIndex][0]);
       }
-
       if (cur_val < 1 || isNaN(cur_val)) {
         cur_val = parseInt(countarray[countarrayIndex][0]);
       }
 
-      if (cur_val > 99999 || isNaN(cur_val)) {
+      if (cur_val > 99999) {
         cur_val = 99999;
       }
 
@@ -177,54 +176,54 @@
 
     function begin() {
       $('.nav-tabs a[href=\'#nav-Monitor\']').tab('show');
+
+      return true;
+    }
+
+    function changeMemberCount(action) {
+      var cur_val = parseInt($('#member_count').val(), 10);
+
+      if (action == 'add') {
+        cur_val += 1;
+      } else if ((action == 'reduce')) {
+        cur_val -= 1;
+      }
+
+      if (cur_val < 1 || isNaN(cur_val)) {
+        cur_val = 1;
+      }
+      if (cur_val > 99999) {
+        cur_val = 99999;
+      }
+
+      $('#member_count').val(cur_val);
+      return true;
     }
 
     function incrementIteration() {
-      var current_memcount = parseInt(document.getElementById('member_count').value);
-      if (current_memcount < 1 || isNaN(current_memcount)) {
-        return false;
-      }
-      document.getElementById('member_count').value = current_memcount;
+
+      var current_memcount = parseInt($('#member_count').val(), 10);
       var lastrow = logarray.length - 1;
-      var last_memcount = parseInt(logarray[lastrow][0]);
-      var last_iterations = parseInt(logarray[lastrow][1]);
+      var last_memcount = parseInt(logarray[lastrow][0], 10);
+      var last_iterations = parseInt(logarray[lastrow][1], 10);
+
       if (current_memcount == last_memcount) {
         logarray[lastrow][0] = current_memcount;
-        logarray[lastrow][1] = parseInt(logarray[lastrow][1]) + 1;
+        logarray[lastrow][1] = parseInt(logarray[lastrow][1], 10) + 1;
       } else {
         logarray.push([current_memcount, 1]);
       }
+
       showResult();
-      return true;
-    }
 
-    function reduceMember() {
-      var cur_val = document.getElementById('member_count').value - 1;
-      if (cur_val < 1 || isNaN(cur_val)) {
-        cur_val = 1;
-      }
-      if (cur_val > 99998 || isNaN(cur_val)) {
-        cur_val = 99998;
-      }
-      document.getElementById('member_count').value = cur_val;
-      return true;
-    }
-
-    function addMember() {
-      var cur_val = parseInt(document.getElementById('member_count').value) + 1;
-      if (cur_val < 1 || isNaN(cur_val)) {
-        cur_val = 1;
-      }
-      if (cur_val > 99999 || isNaN(cur_val)) {
-        cur_val = 99999;
-      }
-      document.getElementById('member_count').value = cur_val;
       return true;
     }
 
     function removeRow(r) {
       var rmd = logarray.splice(r, 1);
+
       showResult();
+
       return true;
     }
 
@@ -232,26 +231,26 @@
       num_iterations = 0;
       var log =
         "<h5 style='color: #ffffff;'>Log</h5><table class='table table-striped' style='color: #7fe1f0;'><tr><th>sr</th><th>members</th><th>times</th><th>result</th>";
-      if (delflag == 'Y') {
+      if (delflag == 'enableDeletion') {
         log += "<th>delete</th></tr>";
       }
+
       if (logarray.length > 1) {
         for (i = 1; i < logarray.length; i++) {
           log += "<tr><td>" + i + "</td><td>" + logarray[i][0] + "</td><td>" + logarray[i][1] + "</td><td>" +
             (
-              parseInt(
-                logarray[i][0]) * parseInt(logarray[i][1])) + "</td>";
-          if (delflag == 'Y') {
-            log += "<td><a href='#' title='Delete' onclick='removeRow(" + i +
-              ");' style='color: red;'> &times; </a></td></tr>";
+              parseInt(logarray[i][0]) * parseInt(logarray[i][1])) + "</td>";
+          if (delflag == 'enableDeletion') {
+            log += "<td><a href='#' title='Delete sr#" + i + "' onclick='removeRow(" + i +
+              ");' style='color: red; font-size: 150%; text-decoration: none;'>&times;</a></td></tr>";
           } else {
             log += "</tr>";
           }
           num_iterations += (parseInt(logarray[i][0]) * parseInt(logarray[i][1]));
         }
         log += "</table><center>";
-        if (delflag != 'Y') {
-          log += "<small><a href='#' onclick='showResult(" + '"Y"' +
+        if (delflag != 'enableDeletion') {
+          log += "<small><a href='#' onclick='showResult(" + '"enableDeletion"' +
             ");' style='color: red;'>Enable Deletion</a></small>";
         } else {
           log +=
@@ -262,24 +261,20 @@
         log =
           "<br><br>A set of analytical data/statistics<br>would be shown here,<br> when there is at least one iteration.";
       }
-      document.getElementById('logarea').innerHTML = log;
-      document.getElementById('result').innerHTML = num_iterations;
+      $('#logarea').html(log);
+      $('#result').html(num_iterations);
 
       showProgress();
       return true;
     }
 
     function showProgress() {
-      var target = parseInt(document.getElementById('sankalp').value);
+      var target = parseInt($('#sankalp').val(), 10);
       var percent = ((num_iterations / target) * 100).toFixed(2);
-      document.getElementById('progress').innerHTML =
-        '<span class="justify-content-center d-flex position-absolute w-100" style="color: black;">' + (target -
-          num_iterations) +
-        ' of ' + target +
-        ' remaining (' +
-        percent + '% complete)</span>';
-      document.getElementById('progress').setAttribute("aria-valuenow", percent);
-      document.getElementById('progress').setAttribute("style", "width: " + percent + "%;");
+      $('#progress').html('<span class="justify-content-center d-flex position-absolute w-100" style="color: black;">' +
+        (target - num_iterations) + ' of ' + target + ' remaining (' + percent + '% complete)</span>');
+      $('#progress').attr("aria-valuenow", percent);
+      $('#progress').attr("style", "width: " + percent + "%;");
 
       return true;
     }
@@ -473,10 +468,12 @@ This version of आवर्तनTracker is licensed under <a rel="license" hre
           <tr>
             <td style="vertical-align: middle; padding: 0px;">
               <div style="text-align: left; padding-left: 5px;">
-                <button type="button" class="btn btn-secondary btn-sm btn-rounded" onclick="reduceMember();">-</button>
+                <button type="button" class="btn btn-secondary btn-sm btn-rounded"
+                  onclick="changeMemberCount('reduce');">-</button>
                 <input id="member_count" type="text" class="form-control" name="mem_cnt" value="10" maxlength="5"
-                  style="display: inline; width: 70px;">
-                <button type="button" class="btn btn-success btn-sm btn-rounded" onclick="addMember();">+</button>
+                  style="display: inline; width: 70px;" onchange="changeMemberCount();">
+                <button type="button" class="btn btn-success btn-sm btn-rounded"
+                  onclick="changeMemberCount('add');">+</button>
               </div>
             </td>
             <td style="vertical-align: middle; padding: 0rem;">
@@ -510,7 +507,7 @@ This version of आवर्तनTracker is licensed under <a rel="license" hre
     </div>
   </div>
   </div>
-  <footer class="footer"><span style="font-size: 0.65rem; line-height: 1;">v1.6<br>Sunday, 06 Sept 2020.<br> भाद्रपद
+  <footer class="footer"><span style="font-size: 0.65rem; line-height: 1;">v1.7<br>Sunday, 06 Sept 2020.<br> भाद्रपद
       कृ. चतुर्थी विक्रम संवत् २०७७, शके १९४२.</span>
   </footer>
 </body>
