@@ -101,12 +101,14 @@
     var countarrayIndex = 1;
     var num_iterations = 0;
 
-    function setUp() {
+    $(document).ready(function () {
+
       $('#stotratext').html(countarray[1][3]);
       setupSelected(1);
       getDropDownList();
+
       return true;
-    }
+    });
 
     function setupSelected(arg) {
 
@@ -137,6 +139,28 @@
       });
 
       $("#dropdown").append(combo);
+      return true;
+    }
+
+    //Refs:
+    //https://stackoverflow.com/questions/879152/how-do-i-make-javascript-beep/23395136#23395136
+    //https://stackoverflow.com/questions/50182831/js-audio-api-oscillator-inside-function-doesnt-play-sound
+    function beep(freq = 400, duration = 200, volume = 0.5, type = 'square') {
+      var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var oscillator = audioCtx.createOscillator();
+      var gainNode = audioCtx.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      gainNode.gain.value = volume;
+      oscillator.frequency.value = freq;
+      oscillator.type = type;
+
+
+      oscillator.start(0);
+      oscillator.stop(audioCtx.currentTime + (duration / 1000));
+
       return true;
     }
 
@@ -216,6 +240,17 @@
 
       showResult();
 
+      var target = parseInt($('#sankalp').val(), 10);
+      var diff = (target - num_iterations);
+
+      if ((diff <= current_memcount) && (diff > 0)) {
+        //alert('beeping');
+        beep(900, 200, 0.75);
+      }
+      if (target <= num_iterations && (num_iterations - target) < current_memcount) {
+        beep(400, 600, 1);
+      }
+
       return true;
     }
 
@@ -281,7 +316,7 @@
   </script>
 </head>
 
-<body style="background-color: black;" onload="setUp();">
+<body style="background-color: black;">
   <div class="container-fluid">
     <div class="row justify-content-center" style="background-color: teal;">
       <div style="text-align: center;">
@@ -507,8 +542,8 @@ This version of आवर्तनTracker is licensed under <a rel="license" hre
     </div>
   </div>
   </div>
-  <footer class="footer"><span style="font-size: 0.65rem; line-height: 1;">v1.7<br>Sunday, 06 Sept 2020.<br> भाद्रपद
-      कृ. चतुर्थी विक्रम संवत् २०७७, शके १९४२.</span>
+  <footer class="footer"><span style="font-size: 0.65rem; line-height: 1;">v1.8<br>Rleased on: Wednesday, 09 Sept 2020.
+      भाद्रपद कृ. सप्तमी विक्रम संवत् २०७७, शके १९४२.</span>
   </footer>
 </body>
 
