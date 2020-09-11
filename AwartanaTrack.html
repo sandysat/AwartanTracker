@@ -56,6 +56,93 @@
       vertical-align: text-bottom;
       text-align: center;
     }
+
+    #final {
+      visibility: hidden;
+      /* Hidden by default. Visible on click */
+      /*min-width: 250px;*/
+      /* Set a default minimum width */
+      /*margin-left: -125px;*/
+      /* Divide value of min-width by 2 */
+      /*background-color: #333;*/
+      /* Black background color */
+      color: #fff;
+      /* White text color */
+      text-align: center;
+      /* Centered text */
+      border-radius: 10px;
+      /* Rounded borders */
+      padding: 6px;
+      /* Padding */
+      position: fixed;
+      /* Sit on top of the screen */
+      z-index: 1;
+      /* Add a z-index if needed */
+      /*left: 50%;*/
+      right: 20px;
+      /* Center the snackbar */
+      top: 30px;
+      /* 30px from the top */
+    }
+
+    /* Show the snackbar when clicking on a button (class added with JavaScript) */
+    #final.show {
+      visibility: visible;
+      /* Show the snackbar */
+      /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    /* Animations to fade the snackbar in and out */
+    @-webkit-keyframes fadein {
+      from {
+        top: 0;
+        opacity: 0;
+      }
+
+      to {
+        top: 30px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadein {
+      from {
+        top: 0;
+        opacity: 0;
+      }
+
+      to {
+        top: 30px;
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes fadeout {
+      from {
+        top: 30px;
+        opacity: 1;
+      }
+
+      to {
+        top: 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeout {
+      from {
+        top: 30px;
+        opacity: 1;
+      }
+
+      to {
+        top: 0;
+        opacity: 0;
+      }
+    }
   </style>
 
   <script>
@@ -246,6 +333,10 @@
       if ((diff <= current_memcount) && (diff > 0)) {
         //alert('beeping');
         beep(900, 200, 0.75);
+        $('#final').toast({
+          delay: 2500
+        });
+        $('#final').toast('show');
       }
       if (target <= num_iterations && (num_iterations - target) < current_memcount) {
         beep(400, 600, 1);
@@ -541,9 +632,16 @@ This version of आवर्तनTracker is licensed under <a rel="license" hre
       <pre class="pre-scrollable"><span id="logarea" style="color: #90ccf1;"></span></pre>
     </div>
   </div>
+
+  <div aria-live="polite" aria-atomic="true">
+    <div class="toast bg-info" id="final">
+      <div class="toast-body">
+        आता हे शेवटचं आवर्तन !! <br>Now the final one!!
+      </div>
+    </div>
   </div>
-  <footer class="footer"><span style="font-size: 0.65rem; line-height: 1;">v1.8<br>Rleased on: Wednesday, 09 Sept 2020.
-      भाद्रपद कृ. सप्तमी विक्रम संवत् २०७७, शके १९४२.</span>
+  <footer class="footer"><span style="font-size: 0.65rem; line-height: 1;">v2.0<br>Rleased on: Friday, 11 Sept 2020.
+      भाद्रपद कृ. नवमी विक्रम संवत् २०७७, शके १९४२.</span>
   </footer>
 </body>
 
